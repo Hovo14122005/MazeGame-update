@@ -34,13 +34,14 @@ public class EndlessMode extends View {
         UP, DOWN, LEFT, RIGHT
     }
 
+    public static Canvas mazeCanvas;
     private int level = 1;
     private static Cell[][] cells;
     private static Cell player, exit;
     private static int COLS = 1 , ROWS = 2;
     private static final float WALL_THICKNESS = 4;
-    private float cellSize, hMargin, vMargin;
-    private Paint wallPaint, playerPaint, exitPaint;
+    private static float cellSize, hMargin, vMargin, margin;
+    private static Paint wallPaint, playerPaint, exitPaint, hintPaint;
     private Random random;
 
 
@@ -56,6 +57,9 @@ public class EndlessMode extends View {
 
         exitPaint = new Paint();
         exitPaint.setColor(Color.BLUE);
+
+        hintPaint = new Paint();
+        hintPaint.setColor(Color.YELLOW);
 
         random = new Random();
 
@@ -166,7 +170,7 @@ public class EndlessMode extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-
+        mazeCanvas = canvas;
         int width = getWidth();
         int height = getHeight();
 
@@ -221,7 +225,7 @@ public class EndlessMode extends View {
             }
         }
 
-        float margin = cellSize / 10;
+        margin = cellSize / 10;
 
         canvas.drawRect(
                 player.col * cellSize + margin,
@@ -344,17 +348,17 @@ public class EndlessMode extends View {
 
         Map<Cell, Cell> parent = new HashMap<>();
 
-        ArrayList<Cell> neighbours = new ArrayList<>();
+        ArrayList<Cell> hintNeighbours;
         Queue<Cell> q = new LinkedList<>();
         q.add(player);
 
         while(!q.isEmpty()){
             Cell current = q.poll();
-            neighbours = getAllNeighbours(current);
-            if(neighbours.isEmpty())continue;
-            for(int i = 0; i < neighbours.size(); i++){
-                parent.put(neighbours.get(i), current);
-                if(neighbours.get(i) == exit){
+            hintNeighbours = getAllNeighbours(current);
+            if(hintNeighbours == null)continue;
+            for(int i = 0; i < hintNeighbours.size(); i++){
+                parent.put(hintNeighbours.get(i), current);
+                if(hintNeighbours.get(i) == exit){
                     Stack<Cell> road = new Stack<>();
                     Cell curr = exit;
 
@@ -363,17 +367,18 @@ public class EndlessMode extends View {
                         curr = parent.get(curr);
                     }
 
+                    int k = 0;
                     while(road.size() > 1){
                         curr = road.pop();
-                        System.out.println(curr);
+                        k++;
                     }
+                    System.out.println(k + " cells till exit");
 
-                    System.out.println("EXO");
                     return;
                 }
                 else{
-                    neighbours.get(i).visited = true;
-                    q.add(neighbours.get(i));
+                    hintNeighbours.get(i).visited = true;
+                    q.add(hintNeighbours.get(i));
                 }
             }
         }
@@ -384,28 +389,28 @@ public class EndlessMode extends View {
 
         //left neighbour
         if(cell.col > 0){
-            if(!cells[cell.col - 1][cell.row].visited){
+            if(!cells[cell.col - 1][cell.row].visited && !cells[cell.col][cell.row].leftWall){
                 neighbours.add(cells[cell.col - 1][cell.row]);
             }
         }
 
         //right neighbour
         if(cell.col < COLS - 1){
-            if(!cells[cell.col + 1][cell.row].visited){
+            if(!cells[cell.col + 1][cell.row].visited && !cells[cell.col][cell.row].rightWall){
                 neighbours.add(cells[cell.col + 1][cell.row]);
             }
         }
 
         //top neighbour
         if(cell.row > 0){
-            if(!cells[cell.col][cell.row - 1].visited){
+            if(!cells[cell.col][cell.row - 1].visited && !cells[cell.col][cell.row].topWall){
                 neighbours.add(cells[cell.col][cell.row - 1]);
             }
         }
 
         //bottom neighbour
         if(cell.row < ROWS - 1){
-            if(!cells[cell.col][cell.row + 1].visited){
+            if(!cells[cell.col][cell.row + 1].visited && !cells[cell.col][cell.row].bottomWall){
                 neighbours.add(cells[cell.col][cell.row + 1]);
             }
         }

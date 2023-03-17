@@ -2,12 +2,14 @@ package com.example.mazegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
-public class Menu extends AppCompatActivity {
+public class Menu extends Activity {
     public static boolean restartEndlessMode;
     public String layoutNum = "Menu";
 
@@ -15,6 +17,7 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Button endlessModeButton = findViewById(R.id.endlessModeButton);
         Button customModeSettingsButton = findViewById(R.id.customModeSettingsButton);

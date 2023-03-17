@@ -20,7 +20,7 @@ public class EndlessModeActivity extends AppCompatActivity {
         hintButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*showEndlessModeHint();*/
+                showEndlessModeHint();
             }
         });
     }

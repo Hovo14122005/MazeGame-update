@@ -2,11 +2,14 @@ package com.example.mazegame;
 
 import static com.example.mazegame.Menu.restartEndlessMode;
 
+import static java.lang.Thread.sleep;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +19,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Stack;
@@ -334,6 +340,9 @@ public class EndlessMode extends View {
                 cells[i][j].visited = false;
             }
         }
+        player.visited = true;
+
+        Map<Cell, Cell> parent = new HashMap<>();
 
         ArrayList<Cell> neighbours = new ArrayList<>();
         Queue<Cell> q = new LinkedList<>();
@@ -342,13 +351,27 @@ public class EndlessMode extends View {
         while(!q.isEmpty()){
             Cell current = q.poll();
             neighbours = getAllNeighbours(current);
+            if(neighbours.isEmpty())continue;
             for(int i = 0; i < neighbours.size(); i++){
+                parent.put(neighbours.get(i), current);
                 if(neighbours.get(i) == exit){
-                    Paint playerPaint = new Paint();
-                    playerPaint.setColor(Color.BLACK);
-                    break;
+                    Stack<Cell> road = new Stack<>();
+                    Cell curr = exit;
+
+                    while(curr != player){
+                        road.push(curr);
+                        curr = parent.get(curr);
+                    }
+
+                    while(road.size() > 1){
+                        curr = road.pop();
+                        System.out.println(curr);
+                    }
+
+                    System.out.println("EXO");
+                    return;
                 }
-                else if(!neighbours.get(i).visited){
+                else{
                     neighbours.get(i).visited = true;
                     q.add(neighbours.get(i));
                 }

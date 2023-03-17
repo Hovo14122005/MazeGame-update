@@ -26,7 +26,7 @@
         android:rotationX="29"
         android:text="Maze Game"
         android:textColor="#000000"
-        android:textSize="70dp"
+        android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"

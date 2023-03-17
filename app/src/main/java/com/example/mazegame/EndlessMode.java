@@ -338,7 +338,7 @@ public class EndlessMode extends View {
         }
     }
 
-    public static void showEndlessModeHint(){
+    public void showEndlessModeHint(){
         for(int i = 0; i < COLS; i++){
             for(int j = 0; j < ROWS; j++){
                 cells[i][j].visited = false;
@@ -367,12 +367,12 @@ public class EndlessMode extends View {
                         curr = parent.get(curr);
                     }
 
-                    int k = 0;
                     while(road.size() > 1){
                         curr = road.pop();
-                        k++;
+                        player = curr;
+
                     }
-                    System.out.println(k + " cells till exit");
+                    invalidate();
 
                     return;
                 }

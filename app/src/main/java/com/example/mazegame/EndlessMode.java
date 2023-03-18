@@ -367,11 +367,14 @@ public class EndlessMode extends View {
                         curr = parent.get(curr);
                     }
 
-                    while(road.size() > 1){
+                    int hintCount = ROWS/2;
+                    int k = Math.min(road.size(), hintCount);
+                    while(k > 0){
+                        k--;
                         curr = road.pop();
-                        player = curr;
-
                     }
+                    player = curr;
+                    checkExit();
                     invalidate();
 
                     return;

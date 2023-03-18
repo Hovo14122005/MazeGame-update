@@ -1,6 +1,7 @@
 package com.example.mazegame;
 
 import static com.example.mazegame.CustomModeActivity.finalColProgress;
+import static com.example.mazegame.CustomModeActivity.finalHintProgress;
 import static com.example.mazegame.CustomModeActivity.finalRowProgress;
 import static com.example.mazegame.Menu.restartEndlessMode;
 
@@ -13,13 +14,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Stack;
@@ -33,7 +38,7 @@ public class CustomMode extends View {
     private int level = 1;
     private static Cell[][] cells;
     private static Cell player, exit;
-    public static int COLS = finalColProgress , ROWS = finalRowProgress;
+    public static int COLS = finalColProgress , ROWS = finalRowProgress, hintCount = finalHintProgress;
     private static final float WALL_THICKNESS = 4;
     private float cellSize, hMargin, vMargin;
     private Paint wallPaint, playerPaint, exitPaint;
@@ -121,7 +126,7 @@ public class CustomMode extends View {
     private void createMaze(){
         /*TextView endlessLevelText = (TextView) findViewById(R.id.levelTextView);
         endlessLevelText.setText(Integer.toString(level++));*/
-        COLS = finalColProgress ; ROWS = finalRowProgress;
+        COLS = finalColProgress ; ROWS = finalRowProgress; hintCount = finalHintProgress;
 
         Stack<Cell> stack = new Stack<>();
         Cell current, next;
@@ -320,5 +325,90 @@ public class CustomMode extends View {
             this.col = col;
             this.row = row;
         }
+    }
+
+    public void showEndlessModeHint(){
+        for(int i = 0; i < COLS; i++){
+            for(int j = 0; j < ROWS; j++){
+                cells[i][j].visited = false;
+            }
+        }
+        player.visited = true;
+
+        Map<CustomMode.Cell, CustomMode.Cell> parent = new HashMap<>();
+
+        ArrayList<CustomMode.Cell> hintNeighbours;
+        Queue<CustomMode.Cell> q = new LinkedList<>();
+        q.add(player);
+
+        while(!q.isEmpty()){
+            CustomMode.Cell current = q.poll();
+            hintNeighbours = getAllNeighbours(current);
+            if(hintNeighbours == null)continue;
+            for(int i = 0; i < hintNeighbours.size(); i++){
+                parent.put(hintNeighbours.get(i), current);
+                if(hintNeighbours.get(i) == exit){
+                    Stack<CustomMode.Cell> road = new Stack<>();
+                    CustomMode.Cell curr = exit;
+
+                    while(curr != player){
+                        road.push(curr);
+                        curr = parent.get(curr);
+                    }
+
+                    int k = Math.min(road.size(), hintCount);
+                    while(k > 0){
+                        k--;
+                        curr = road.pop();
+                    }
+                    player = curr;
+                    checkExit();
+                    invalidate();
+
+                    return;
+                }
+                else{
+                    hintNeighbours.get(i).visited = true;
+                    q.add(hintNeighbours.get(i));
+                }
+            }
+        }
+    }
+
+    private static ArrayList<com.example.mazegame.CustomMode.Cell> getAllNeighbours(CustomMode.Cell cell){
+        ArrayList<CustomMode.Cell> neighbours = new ArrayList<>();
+
+        //left neighbour
+        if(cell.col > 0){
+            if(!cells[cell.col - 1][cell.row].visited && !cells[cell.col][cell.row].leftWall){
+                neighbours.add(cells[cell.col - 1][cell.row]);
+            }
+        }
+
+        //right neighbour
+        if(cell.col < COLS - 1){
+            if(!cells[cell.col + 1][cell.row].visited && !cells[cell.col][cell.row].rightWall){
+                neighbours.add(cells[cell.col + 1][cell.row]);
+            }
+        }
+
+        //top neighbour
+        if(cell.row > 0){
+            if(!cells[cell.col][cell.row - 1].visited && !cells[cell.col][cell.row].topWall){
+                neighbours.add(cells[cell.col][cell.row - 1]);
+            }
+        }
+
+        //bottom neighbour
+        if(cell.row < ROWS - 1){
+            if(!cells[cell.col][cell.row + 1].visited && !cells[cell.col][cell.row].bottomWall){
+                neighbours.add(cells[cell.col][cell.row + 1]);
+            }
+        }
+
+        if(neighbours.size() > 0){
+            return neighbours;
+        }
+        return null;
     }
 }

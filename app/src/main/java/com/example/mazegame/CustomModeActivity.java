@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -26,12 +27,19 @@ public class CustomModeActivity extends Activity {
     public static int finalRowProgress = 2;
     private SeekBar rowSeekBar;
 
+    private TextView hintTextView;
+    private ProgressBar hintProgressBar;
+    public static int finalHintProgress = 1;
+    private SeekBar hintSeekBar;
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_mode);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         colTextView = (TextView) findViewById(R.id.colTextView);
         colProgressBar = (ProgressBar) findViewById(R.id.colProgressBar);
@@ -79,6 +87,29 @@ public class CustomModeActivity extends Activity {
             }
         });
 
+        hintTextView = (TextView) findViewById(R.id.hintTextView);
+        hintProgressBar = (ProgressBar) findViewById(R.id.hintProgressBar);
+        hintSeekBar = (SeekBar) findViewById(R.id.hintSeekBar);
+
+        hintSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                hintProgressBar.setProgress(progress);
+                hintTextView.setText("Skip " + progress + " cells per hint");
+                finalHintProgress = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         Button submitButton = (Button) findViewById(R.id.submitButton);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -86,8 +117,19 @@ public class CustomModeActivity extends Activity {
             public void onClick(View view) {
                 layoutNum = "CustomModeActivity";
                 setContentView(R.layout.custom_mode);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    CustomMode hintView = (CustomMode) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showEndlessModeHint();
+                    }
+                });
             }
         });
+
+
     }
 
     public void openCustomModeSettingsActivity(){
@@ -102,7 +144,7 @@ public class CustomModeActivity extends Activity {
     public void onBackPressed() {
         if(layoutNum == "CustomModeActivity"){
             layoutNum = "CustomModeSettingsActivity";
-            finalColProgress = 2; finalRowProgress = 2;
+            finalColProgress = 2; finalRowProgress = 2; finalHintProgress = 1;
             openCustomModeSettingsActivity();
         }
         else if (layoutNum == "CustomModeSettingsActivity") {

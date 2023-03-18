@@ -23,7 +23,7 @@ public class EndlessModeActivity extends Activity {
         Button hintButton = (Button) findViewById(R.id.hintButton);
 
         hintButton.setOnClickListener(new View.OnClickListener() {
-            EndlessMode hintView = new EndlessMode(getApplicationContext(), null);
+            EndlessMode hintView = (EndlessMode) findViewById(R.id.gameView);
             @Override
             public void onClick(View view) {
                 hintView.showEndlessModeHint();

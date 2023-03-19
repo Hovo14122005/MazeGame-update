@@ -5,6 +5,7 @@ import static com.example.mazegame.Menu.restartEndlessMode;
 
 import static java.lang.Thread.sleep;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -39,15 +40,18 @@ public class Levels extends View {
         UP, DOWN, LEFT, RIGHT
     }
 
+    Button hintButton = (Button) findViewById(R.id.hintButton);
+    public static int yDifficulty;
+    public static int xDifficulty;
     public static Canvas mazeCanvas;
     private static int thisLevel;
     private static Cell[][] cells;
     private static Cell player, exit;
-    private static int COLS = 1 , ROWS = 2;
+    private static int COLS, ROWS;
     private static final float WALL_THICKNESS = 4;
     private static float cellSize, hMargin, vMargin, margin;
     private static Paint wallPaint, playerPaint, exitPaint, hintPaint;
-    private Random random;
+    private static Random random;
 
 
     public Levels(Context context, @Nullable AttributeSet attrs) {
@@ -71,7 +75,7 @@ public class Levels extends View {
         createMaze();
     }
 
-    private Cell getNeighbour(Cell cell){
+    private static Cell getNeighbour(Cell cell){
         ArrayList<Cell> neighbours = new ArrayList<>();
 
         //left neighbour
@@ -131,193 +135,220 @@ public class Levels extends View {
         }
     }
 
-    static void createMaze(){
-        ArrayList<Pair<Cell, Cell>> path = new ArrayList<>();
+    void createMaze(){
+        /*TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+        levelTextView.setText("Level " + level);*/
+
         thisLevel = level;
+        Stack<Cell> stack = new Stack<>();
+        Cell current, next;
 
         switch(thisLevel)
         {
             case 1 :
-                ROWS = 3; COLS = 3;
-                cells = new Cell[COLS][ROWS];
-                for(int x = 0; x < COLS; x++){
-                    for(int y = 0; y < ROWS; y++){
-                        cells[x][y] = new Cell(x, y);
-                    }
-                }
-
-                Collections.addAll(
-                        path,
-                        new Pair<>(cells[0][0], cells[1][0]),
-                        new Pair<>(cells[1][0], cells[2][0]),
-                        new Pair<>(cells[1][0], cells[2][0]),
-                        new Pair<>(cells[2][0], cells[2][1]),
-                        new Pair<>(cells[2][1], cells[1][1]),
-                        new Pair<>(cells[1][1], cells[0][1]),
-                        new Pair<>(cells[0][1], cells[0][2]),
-                        new Pair<>(cells[0][2], cells[1][2]),
-                        new Pair<>(cells[1][2], cells[2][2])
-                );
+                ROWS = 7; COLS = 4;
+                yDifficulty = 1;
+                xDifficulty = 1;
                 break;
 
             case 2 :
-                ROWS = 6; COLS = 4;
-                cells = new Cell[COLS][ROWS];
-                for(int x = 0; x < COLS; x++){
-                    for(int y = 0; y < ROWS; y++){
-                        cells[x][y] = new Cell(x, y);
-                    }
-                }
-
-                Collections.addAll(
-                        path,
-                        new Pair<>(cells[0][0], cells[1][0]),
-                        new Pair<>(cells[1][0], cells[2][0]),
-                        new Pair<>(cells[2][0], cells[3][0]),
-                        new Pair<>(cells[0][0], cells[0][1]),
-                        new Pair<>(cells[0][1], cells[0][2]),
-                        new Pair<>(cells[0][2], cells[0][3]),
-                        new Pair<>(cells[0][3], cells[0][4]),
-                        new Pair<>(cells[1][1], cells[2][1]),
-                        new Pair<>(cells[2][1], cells[3][1]),
-                        new Pair<>(cells[3][0], cells[3][1]),
-                        new Pair<>(cells[0][3], cells[1][3]),
-                        new Pair<>(cells[1][1], cells[1][2]),
-                        new Pair<>(cells[3][1], cells[3][2]),
-                        new Pair<>(cells[2][2], cells[3][2]),
-                        new Pair<>(cells[1][2], cells[1][3]),
-                        new Pair<>(cells[1][4], cells[2][4]),
-                        new Pair<>(cells[2][2], cells[2][3]),
-                        new Pair<>(cells[2][3], cells[3][3]),
-                        new Pair<>(cells[3][3], cells[3][4]),
-                        new Pair<>(cells[2][4], cells[3][4]),
-                        new Pair<>(cells[0][4], cells[0][5]),
-                        new Pair<>(cells[0][5], cells[1][5]),
-                        new Pair<>(cells[1][4], cells[1][5]),
-                        new Pair<>(cells[2][4], cells[2][5]),
-                        new Pair<>(cells[2][5], cells[3][5])
-                );
+                ROWS = 7; COLS = 4;
+                yDifficulty = 2;
+                xDifficulty = 1;
                 break;
 
             case 3 :
-                ROWS = 3; COLS = 3;
+                ROWS = 7; COLS = 4;
+                yDifficulty = 1;
+                xDifficulty = 2;
                 break;
 
             case 4 :
-                ROWS = 3; COLS = 3;
+                ROWS = 7; COLS = 4;
+                yDifficulty = 2;
+                xDifficulty = 2;
                 break;
 
             case 5 :
-                ROWS = 3; COLS = 3;
+                ROWS = 7; COLS = 4;
+                yDifficulty = 0;
+                xDifficulty = 0;
                 break;
 
             case 6 :
-                ROWS = 3; COLS = 3;
+                ROWS = 10; COLS = 6;
+                yDifficulty = 1;
+                xDifficulty = 1;
                 break;
 
             case 7 :
-                ROWS = 3; COLS = 3;
+                ROWS = 10; COLS = 6;
+                yDifficulty = 2;
+                xDifficulty = 1;
                 break;
 
             case 8 :
-                ROWS = 3; COLS = 3;
+                ROWS = 10; COLS = 6;
+                yDifficulty = 1;
+                xDifficulty = 2;
                 break;
 
             case 9 :
-                ROWS = 3; COLS = 3;
+                ROWS = 10; COLS = 6;
+                yDifficulty = 2;
+                xDifficulty = 2;
                 break;
 
             case 10 :
-                ROWS = 3; COLS = 3;
+                ROWS = 10; COLS = 6;
+                yDifficulty = 0;
+                xDifficulty = 0;
                 break;
 
             case 11 :
-                ROWS = 3; COLS = 3;
+                ROWS = 15; COLS = 8;
+                yDifficulty = 1;
+                xDifficulty = 1;
                 break;
 
             case 12 :
-                ROWS = 3; COLS = 3;
+                ROWS = 15; COLS = 8;
+                yDifficulty = 2;
+                xDifficulty = 1;
                 break;
 
             case 13 :
-                ROWS = 3; COLS = 3;
+                ROWS = 15; COLS = 8;
+                yDifficulty = 1;
+                xDifficulty = 2;
                 break;
 
             case 14 :
-                ROWS = 3; COLS = 3;
+                ROWS = 15; COLS = 8;
+                yDifficulty = 2;
+                xDifficulty = 2;
                 break;
 
             case 15 :
-                ROWS = 3; COLS = 3;
+                ROWS = 15; COLS = 8;
+                yDifficulty = 0;
+                xDifficulty = 0;
                 break;
 
             case 16 :
-                ROWS = 3; COLS = 3;
+                ROWS = 30; COLS = 15;
+                yDifficulty = 1;
+                xDifficulty = 1;
                 break;
 
             case 17 :
-                ROWS = 3; COLS = 3;
+                ROWS = 30; COLS = 15;
+                yDifficulty = 2;
+                xDifficulty = 1;
                 break;
 
             case 18 :
-                ROWS = 3; COLS = 3;
+                ROWS = 30; COLS = 15;
+                yDifficulty = 1;
+                xDifficulty = 2;
                 break;
 
             case 19 :
-                ROWS = 3; COLS = 3;
+                ROWS = 30; COLS = 15;
+                yDifficulty = 2;
+                xDifficulty = 2;
                 break;
 
             case 20 :
-                ROWS = 3; COLS = 3;
+                ROWS = 30; COLS = 15;
+                yDifficulty = 0;
+                xDifficulty = 0;
                 break;
 
             case 21 :
-                ROWS = 3; COLS = 3;
+                ROWS = 35; COLS = 18;
+                yDifficulty = 1;
+                xDifficulty = 1;
                 break;
 
             case 22 :
-                ROWS = 3; COLS = 3;
+                ROWS = 35; COLS = 18;
+                yDifficulty = 2;
+                xDifficulty = 1;
                 break;
 
             case 23 :
-                ROWS = 3; COLS = 3;
+                ROWS = 35; COLS = 18;
+                yDifficulty = 1;
+                xDifficulty = 2;
                 break;
 
             case 24 :
-                ROWS = 3; COLS = 3;
+                ROWS = 35; COLS = 18;
+                yDifficulty = 2;
+                xDifficulty = 2;
                 break;
 
             case 25 :
-                ROWS = 3; COLS = 3;
+                ROWS = 35; COLS = 18;
+                yDifficulty = 0;
+                xDifficulty = 0;
                 break;
 
             case 26 :
-                ROWS = 3; COLS = 3;
+                ROWS = 40; COLS = 20;
+                yDifficulty = 1;
+                xDifficulty = 1;
                 break;
 
             case 27 :
-                ROWS = 3; COLS = 3;
+                ROWS = 40; COLS = 20;
+                yDifficulty = 2;
+                xDifficulty = 1;
                 break;
 
             case 28 :
-                ROWS = 3; COLS = 3;
+                ROWS = 40; COLS = 20;
+                yDifficulty = 1;
+                xDifficulty = 2;
                 break;
 
             case 29 :
-                ROWS = 3; COLS = 3;
+                ROWS = 40; COLS = 20;
+                yDifficulty = 2;
+                xDifficulty = 2;
                 break;
 
             case 30 :
-                ROWS = 3; COLS = 3;
+                ROWS = 40; COLS = 20;
+                yDifficulty = 0;
+                xDifficulty = 0;
                 break;
+        }
+
+        cells = new Cell[COLS][ROWS];
+        for(int x = 0; x < COLS; x++){
+            for(int y = 0; y < ROWS; y++){
+                cells[x][y] = new Cell(x, y);
+            }
         }
 
         player = cells[0][0];
         exit = cells[COLS - 1][ROWS - 1];
 
-        for(int i = 0; i < path.size(); i++){
-            removeWall(path.get(i).first, path.get(i).second);
-        }
+        current = cells[0][0];
+        current.visited = true;
+
+        do{
+            next = getNeighbour(current);
+            if(next != null){
+                removeWall(current, next);
+                stack.push(current);
+                current = next;
+                current.visited = true;
+            }
+            else current = stack.pop();
+        }while(!stack.empty());
     }
 
     @Override
@@ -336,43 +367,45 @@ public class Levels extends View {
 
         canvas.translate(hMargin, vMargin);
 
-        for(int x = 0; x < COLS; x++){
-            for(int y = 0; y < ROWS; y++){
-                if(cells[x][y].topWall) {
-                    canvas.drawLine(
-                            x * cellSize,
-                            y * cellSize,
-                            (x + 1) * cellSize,
-                            y * cellSize,
-                            wallPaint
-                    );
-                }
-                if(cells[x][y].leftWall) {
-                    canvas.drawLine(
-                            x * cellSize,
-                            y * cellSize,
-                            x * cellSize,
-                            (y + 1) * cellSize,
-                            wallPaint
-                    );
-                }
-                if(cells[x][y].bottomWall) {
-                    canvas.drawLine(
-                            x * cellSize,
-                            (y + 1) * cellSize,
-                            (x + 1) * cellSize,
-                            (y + 1) * cellSize,
-                            wallPaint
-                    );
-                }
-                if(cells[x][y].rightWall) {
-                    canvas.drawLine(
-                            (x + 1) * cellSize,
-                            y * cellSize,
-                            (x + 1) * cellSize,
-                            (y + 1) * cellSize,
-                            wallPaint
-                    );
+        if(yDifficulty > 0 && xDifficulty > 0){
+            for(int x = 0; x < COLS; x+=xDifficulty){
+                for(int y = 0; y < ROWS; y+=yDifficulty){
+                    if(cells[x][y].topWall) {
+                        canvas.drawLine(
+                                x * cellSize,
+                                y * cellSize,
+                                (x + 1) * cellSize,
+                                y * cellSize,
+                                wallPaint
+                        );
+                    }
+                    if(cells[x][y].leftWall) {
+                        canvas.drawLine(
+                                x * cellSize,
+                                y * cellSize,
+                                x * cellSize,
+                                (y + 1) * cellSize,
+                                wallPaint
+                        );
+                    }
+                    if(cells[x][y].bottomWall) {
+                        canvas.drawLine(
+                                x * cellSize,
+                                (y + 1) * cellSize,
+                                (x + 1) * cellSize,
+                                (y + 1) * cellSize,
+                                wallPaint
+                        );
+                    }
+                    if(cells[x][y].rightWall) {
+                        canvas.drawLine(
+                                (x + 1) * cellSize,
+                                y * cellSize,
+                                (x + 1) * cellSize,
+                                (y + 1) * cellSize,
+                                wallPaint
+                        );
+                    }
                 }
             }
         }
@@ -491,7 +524,7 @@ public class Levels extends View {
         }
     }
 
-    public void showEndlessModeHint(){
+    public void showLevelsHint(){
         for(int i = 0; i < COLS; i++){
             for(int j = 0; j < ROWS; j++){
                 cells[i][j].visited = false;
@@ -520,13 +553,8 @@ public class Levels extends View {
                         curr = parent.get(curr);
                     }
 
-                    int hintCount = ROWS/2;
-                    int k = Math.min(road.size(), hintCount);
-                    while(k > 0){
-                        k--;
-                        curr = road.pop();
-                    }
-                    player = curr;
+
+                    player = road.pop();
                     checkExit();
                     invalidate();
 
@@ -540,7 +568,7 @@ public class Levels extends View {
         }
     }
 
-    private static ArrayList<com.example.mazegame.Levels.Cell> getAllNeighbours(Cell cell){
+    private static ArrayList<Cell> getAllNeighbours(Cell cell){
         ArrayList<Cell> neighbours = new ArrayList<>();
 
         //left neighbour
@@ -576,4 +604,5 @@ public class Levels extends View {
         }
         return null;
     }
+
 }

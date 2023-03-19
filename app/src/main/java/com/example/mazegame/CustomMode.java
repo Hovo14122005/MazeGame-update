@@ -124,8 +124,6 @@ public class CustomMode extends View {
     }
 
     private void createMaze(){
-        /*TextView endlessLevelText = (TextView) findViewById(R.id.levelTextView);
-        endlessLevelText.setText(Integer.toString(level++));*/
         COLS = finalColProgress ; ROWS = finalRowProgress; hintCount = finalHintProgress;
 
         Stack<Cell> stack = new Stack<>();
@@ -311,7 +309,7 @@ public class CustomMode extends View {
         return super.onTouchEvent(event);
     }
 
-    private class Cell{
+    class Cell{
         boolean
                 topWall = true,
                 rightWall = true,

@@ -1,51 +1,56 @@
 package com.example.mazegame;
 
-import static com.example.mazegame.CustomModeActivity.finalColProgress;
-import static com.example.mazegame.CustomModeActivity.finalHintProgress;
-import static com.example.mazegame.CustomModeActivity.finalRowProgress;
+import static com.example.mazegame.LevelsActivity.level;
 import static com.example.mazegame.Menu.restartEndlessMode;
+
+import static java.lang.Thread.sleep;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Stack;
 
-public class CustomMode extends View {
+public class Levels extends View {
 
     private enum Direction{
         UP, DOWN, LEFT, RIGHT
     }
 
-    private int level = 1;
+    public static Canvas mazeCanvas;
+    private static int thisLevel;
     private static Cell[][] cells;
     private static Cell player, exit;
-    public static int COLS = finalColProgress , ROWS = finalRowProgress, hintCount = finalHintProgress;
+    private static int COLS = 1 , ROWS = 2;
     private static final float WALL_THICKNESS = 4;
-    private float cellSize, hMargin, vMargin;
-    private Paint wallPaint, playerPaint, exitPaint;
+    private static float cellSize, hMargin, vMargin, margin;
+    private static Paint wallPaint, playerPaint, exitPaint, hintPaint;
     private Random random;
 
 
-    public CustomMode(Context context, @Nullable AttributeSet attrs) {
+    public Levels(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         wallPaint = new Paint();
@@ -57,6 +62,9 @@ public class CustomMode extends View {
 
         exitPaint = new Paint();
         exitPaint.setColor(Color.BLUE);
+
+        hintPaint = new Paint();
+        hintPaint.setColor(Color.YELLOW);
 
         random = new Random();
 
@@ -101,7 +109,7 @@ public class CustomMode extends View {
         return null;
     }
 
-    private void removeWall(Cell current, Cell next){
+    private static void removeWall(Cell current, Cell next){
         if(current.col == next.col && current.row == next.row + 1){
             current.topWall = false;
             next.bottomWall = false;
@@ -123,43 +131,198 @@ public class CustomMode extends View {
         }
     }
 
-    private void createMaze(){
-        /*TextView endlessLevelText = (TextView) findViewById(R.id.levelTextView);
-        endlessLevelText.setText(Integer.toString(level++));*/
-        COLS = finalColProgress ; ROWS = finalRowProgress; hintCount = finalHintProgress;
+    static void createMaze(){
+        ArrayList<Pair<Cell, Cell>> path = new ArrayList<>();
+        thisLevel = level;
 
-        Stack<Cell> stack = new Stack<>();
-        Cell current, next;
+        switch(thisLevel)
+        {
+            case 1 :
+                ROWS = 3; COLS = 3;
+                cells = new Cell[COLS][ROWS];
+                for(int x = 0; x < COLS; x++){
+                    for(int y = 0; y < ROWS; y++){
+                        cells[x][y] = new Cell(x, y);
+                    }
+                }
 
-        cells = new Cell[COLS][ROWS];
+                Collections.addAll(
+                        path,
+                        new Pair<>(cells[0][0], cells[1][0]),
+                        new Pair<>(cells[1][0], cells[2][0]),
+                        new Pair<>(cells[1][0], cells[2][0]),
+                        new Pair<>(cells[2][0], cells[2][1]),
+                        new Pair<>(cells[2][1], cells[1][1]),
+                        new Pair<>(cells[1][1], cells[0][1]),
+                        new Pair<>(cells[0][1], cells[0][2]),
+                        new Pair<>(cells[0][2], cells[1][2]),
+                        new Pair<>(cells[1][2], cells[2][2])
+                );
+                break;
 
-        for(int x = 0; x < COLS; x++){
-            for(int y = 0; y < ROWS; y++){
-                cells[x][y] = new Cell(x, y);
-            }
+            case 2 :
+                ROWS = 6; COLS = 4;
+                cells = new Cell[COLS][ROWS];
+                for(int x = 0; x < COLS; x++){
+                    for(int y = 0; y < ROWS; y++){
+                        cells[x][y] = new Cell(x, y);
+                    }
+                }
+
+                Collections.addAll(
+                        path,
+                        new Pair<>(cells[0][0], cells[1][0]),
+                        new Pair<>(cells[1][0], cells[2][0]),
+                        new Pair<>(cells[2][0], cells[3][0]),
+                        new Pair<>(cells[0][0], cells[0][1]),
+                        new Pair<>(cells[0][1], cells[0][2]),
+                        new Pair<>(cells[0][2], cells[0][3]),
+                        new Pair<>(cells[0][3], cells[0][4]),
+                        new Pair<>(cells[1][1], cells[2][1]),
+                        new Pair<>(cells[2][1], cells[3][1]),
+                        new Pair<>(cells[3][0], cells[3][1]),
+                        new Pair<>(cells[0][3], cells[1][3]),
+                        new Pair<>(cells[1][1], cells[1][2]),
+                        new Pair<>(cells[3][1], cells[3][2]),
+                        new Pair<>(cells[2][2], cells[3][2]),
+                        new Pair<>(cells[1][2], cells[1][3]),
+                        new Pair<>(cells[1][4], cells[2][4]),
+                        new Pair<>(cells[2][2], cells[2][3]),
+                        new Pair<>(cells[2][3], cells[3][3]),
+                        new Pair<>(cells[3][3], cells[3][4]),
+                        new Pair<>(cells[2][4], cells[3][4]),
+                        new Pair<>(cells[0][4], cells[0][5]),
+                        new Pair<>(cells[0][5], cells[1][5]),
+                        new Pair<>(cells[1][4], cells[1][5]),
+                        new Pair<>(cells[2][4], cells[2][5]),
+                        new Pair<>(cells[2][5], cells[3][5])
+                );
+                break;
+
+            case 3 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 4 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 5 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 6 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 7 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 8 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 9 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 10 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 11 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 12 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 13 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 14 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 15 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 16 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 17 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 18 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 19 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 20 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 21 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 22 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 23 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 24 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 25 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 26 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 27 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 28 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 29 :
+                ROWS = 3; COLS = 3;
+                break;
+
+            case 30 :
+                ROWS = 3; COLS = 3;
+                break;
         }
 
         player = cells[0][0];
         exit = cells[COLS - 1][ROWS - 1];
 
-        current = cells[0][0];
-        current.visited = true;
-
-        do{
-            next = getNeighbour(current);
-            if(next != null){
-                removeWall(current, next);
-                stack.push(current);
-                current = next;
-                current.visited = true;
-            }
-            else current = stack.pop();
-        }while(!stack.empty());
+        for(int i = 0; i < path.size(); i++){
+            removeWall(path.get(i).first, path.get(i).second);
+        }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-
+        mazeCanvas = canvas;
         int width = getWidth();
         int height = getHeight();
 
@@ -214,7 +377,7 @@ public class CustomMode extends View {
             }
         }
 
-        float margin = cellSize / 10;
+        margin = cellSize / 10;
 
         canvas.drawRect(
                 player.col * cellSize + margin,
@@ -261,6 +424,7 @@ public class CustomMode extends View {
 
     private void checkExit(){
         if(player == exit){
+            level++;
             createMaze();
         }
     }
@@ -311,7 +475,7 @@ public class CustomMode extends View {
         return super.onTouchEvent(event);
     }
 
-    private class Cell{
+    private static class Cell{
         boolean
                 topWall = true,
                 rightWall = true,
@@ -327,7 +491,7 @@ public class CustomMode extends View {
         }
     }
 
-    public void showCustomModeHint(){
+    public void showEndlessModeHint(){
         for(int i = 0; i < COLS; i++){
             for(int j = 0; j < ROWS; j++){
                 cells[i][j].visited = false;
@@ -335,27 +499,28 @@ public class CustomMode extends View {
         }
         player.visited = true;
 
-        Map<CustomMode.Cell, CustomMode.Cell> parent = new HashMap<>();
+        Map<Cell, Cell> parent = new HashMap<>();
 
-        ArrayList<CustomMode.Cell> hintNeighbours;
-        Queue<CustomMode.Cell> q = new LinkedList<>();
+        ArrayList<Cell> hintNeighbours;
+        Queue<Cell> q = new LinkedList<>();
         q.add(player);
 
         while(!q.isEmpty()){
-            CustomMode.Cell current = q.poll();
+            Cell current = q.poll();
             hintNeighbours = getAllNeighbours(current);
             if(hintNeighbours == null)continue;
             for(int i = 0; i < hintNeighbours.size(); i++){
                 parent.put(hintNeighbours.get(i), current);
                 if(hintNeighbours.get(i) == exit){
-                    Stack<CustomMode.Cell> road = new Stack<>();
-                    CustomMode.Cell curr = exit;
+                    Stack<Cell> road = new Stack<>();
+                    Cell curr = exit;
 
                     while(curr != player){
                         road.push(curr);
                         curr = parent.get(curr);
                     }
 
+                    int hintCount = ROWS/2;
                     int k = Math.min(road.size(), hintCount);
                     while(k > 0){
                         k--;
@@ -375,8 +540,8 @@ public class CustomMode extends View {
         }
     }
 
-    private static ArrayList<com.example.mazegame.CustomMode.Cell> getAllNeighbours(CustomMode.Cell cell){
-        ArrayList<CustomMode.Cell> neighbours = new ArrayList<>();
+    private static ArrayList<com.example.mazegame.Levels.Cell> getAllNeighbours(Cell cell){
+        ArrayList<Cell> neighbours = new ArrayList<>();
 
         //left neighbour
         if(cell.col > 0){

@@ -123,7 +123,7 @@ public class CustomModeActivity extends Activity {
                     CustomMode hintView = (CustomMode) findViewById(R.id.gameView);
                     @Override
                     public void onClick(View view) {
-                        hintView.showEndlessModeHint();
+                        hintView.showCustomModeHint();
                     }
                 });
             }

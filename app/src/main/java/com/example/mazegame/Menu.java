@@ -21,6 +21,15 @@ public class Menu extends Activity {
 
         Button endlessModeButton = findViewById(R.id.endlessModeButton);
         Button customModeSettingsButton = findViewById(R.id.customModeSettingsButton);
+        Button levelsButton = findViewById(R.id.levelsButton);
+
+        levelsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layoutNum = "LevelsActivity";
+                openLevelsActivity();
+            }
+        });
 
         endlessModeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +52,10 @@ public class Menu extends Activity {
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
     }
+    public void openLevelsActivity(){
+        Intent intent = new Intent(this, LevelsActivity.class);
+        startActivity(intent);
+    }
     public void openEndlessModeActivity(){
         Intent intent = new Intent(this, EndlessModeActivity.class);
         restartEndlessMode = true;
@@ -56,6 +69,10 @@ public class Menu extends Activity {
     @Override
     public void onBackPressed() {
         if(layoutNum == "EndlessModeActivity"){
+            layoutNum = "Menu";
+            openMenu();
+        }
+        else if(layoutNum == "LevelsActivity"){
             layoutNum = "Menu";
             openMenu();
         }

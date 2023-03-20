@@ -72,6 +72,7 @@ public class Levels extends View {
 
         random = new Random();
 
+
         createMaze();
     }
 

@@ -19,10 +19,27 @@ public class Menu extends Activity {
         setContentView(R.layout.menu);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        Button playButton = findViewById(R.id.playButton);
         Button endlessModeButton = findViewById(R.id.endlessModeButton);
         Button customModeSettingsButton = findViewById(R.id.customModeSettingsButton);
         Button levelsButton = findViewById(R.id.levelsButton);
 
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layoutNum = "anyLevel";
+                setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
+            }
+        });
         levelsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +88,10 @@ public class Menu extends Activity {
         if(layoutNum == "EndlessModeActivity"){
             layoutNum = "Menu";
             openMenu();
+        }
+        else if(layoutNum == "anyLevel"){
+            layoutNum = "LevelsActivity";
+            openLevelsActivity();
         }
         else if(layoutNum == "LevelsActivity"){
             layoutNum = "Menu";

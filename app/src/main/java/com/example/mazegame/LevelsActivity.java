@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class LevelsActivity extends Activity {
     public String layoutNum = "Levels";
-    public static int level;
+    public static int level = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 1;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level2.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +75,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 2;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level3.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +92,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 3;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level4.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +109,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 4;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level5.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +126,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 5;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level6.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +143,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 6;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level7.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +160,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 7;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level8.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +177,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 8;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level9.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +194,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 9;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level10.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +211,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 10;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level11.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +228,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 11;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level12.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +245,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 12;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level13.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +262,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 13;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level14.setOnClickListener(new View.OnClickListener() {
@@ -162,6 +279,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 14;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level15.setOnClickListener(new View.OnClickListener() {
@@ -170,6 +296,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 15;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level16.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +313,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 16;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level17.setOnClickListener(new View.OnClickListener() {
@@ -186,6 +330,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 17;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level18.setOnClickListener(new View.OnClickListener() {
@@ -194,6 +347,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 18;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level19.setOnClickListener(new View.OnClickListener() {
@@ -202,6 +364,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 19;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level20.setOnClickListener(new View.OnClickListener() {
@@ -210,6 +381,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 20;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level21.setOnClickListener(new View.OnClickListener() {
@@ -218,6 +398,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 21;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level22.setOnClickListener(new View.OnClickListener() {
@@ -226,6 +415,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 22;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level23.setOnClickListener(new View.OnClickListener() {
@@ -234,6 +432,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 23;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level24.setOnClickListener(new View.OnClickListener() {
@@ -242,6 +449,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 24;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level25.setOnClickListener(new View.OnClickListener() {
@@ -250,6 +466,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 25;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level26.setOnClickListener(new View.OnClickListener() {
@@ -258,6 +483,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 26;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level27.setOnClickListener(new View.OnClickListener() {
@@ -266,6 +500,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 27;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level28.setOnClickListener(new View.OnClickListener() {
@@ -274,6 +517,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 28;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level29.setOnClickListener(new View.OnClickListener() {
@@ -282,6 +534,15 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 29;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
         level30.setOnClickListener(new View.OnClickListener() {
@@ -290,17 +551,17 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 30;
                 setContentView(R.layout.levels);
+
+                Button hintButton = (Button) findViewById(R.id.hintButton);
+                hintButton.setOnClickListener(new View.OnClickListener() {
+                    Levels hintView = (Levels) findViewById(R.id.gameView);
+                    @Override
+                    public void onClick(View view) {
+                        hintView.showLevelsHint();
+                    }
+                });
             }
         });
-
-        /*Button hintButton = (Button) findViewById(R.id.gameView);
-        hintButton.setOnClickListener(new View.OnClickListener() {
-            Levels hintView = (Levels) findViewById(R.id.gameView);
-            @Override
-            public void onClick(View view) {
-                hintView.showLevelsHint();
-            }
-        });*/
     }
 
     public void onBackPressed() {

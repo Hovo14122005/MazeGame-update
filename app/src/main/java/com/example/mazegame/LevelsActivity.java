@@ -293,14 +293,14 @@ public class LevelsActivity extends Activity {
             }
         });
 
-        Button hintButton = (Button) findViewById(R.id.gameView);
+        /*Button hintButton = (Button) findViewById(R.id.gameView);
         hintButton.setOnClickListener(new View.OnClickListener() {
             Levels hintView = (Levels) findViewById(R.id.gameView);
             @Override
             public void onClick(View view) {
                 hintView.showLevelsHint();
             }
-        });
+        });*/
     }
 
     public void onBackPressed() {

@@ -176,61 +176,61 @@ public class Levels extends View {
                 break;
 
             case 6 :
-                ROWS = 10; COLS = 6;
+                ROWS = 12; COLS = 6;
                 yDifficulty = 1;
                 xDifficulty = 1;
                 break;
 
             case 7 :
-                ROWS = 10; COLS = 6;
+                ROWS = 12; COLS = 6;
                 yDifficulty = 2;
                 xDifficulty = 1;
                 break;
 
             case 8 :
-                ROWS = 10; COLS = 6;
+                ROWS = 12; COLS = 6;
                 yDifficulty = 1;
                 xDifficulty = 2;
                 break;
 
             case 9 :
-                ROWS = 10; COLS = 6;
+                ROWS = 12; COLS = 6;
                 yDifficulty = 2;
                 xDifficulty = 2;
                 break;
 
             case 10 :
-                ROWS = 10; COLS = 6;
+                ROWS = 12; COLS = 6;
                 yDifficulty = 0;
                 xDifficulty = 0;
                 break;
 
             case 11 :
-                ROWS = 15; COLS = 8;
+                ROWS = 20; COLS = 10;
                 yDifficulty = 1;
                 xDifficulty = 1;
                 break;
 
             case 12 :
-                ROWS = 15; COLS = 8;
+                ROWS = 20; COLS = 10;
                 yDifficulty = 2;
                 xDifficulty = 1;
                 break;
 
             case 13 :
-                ROWS = 15; COLS = 8;
+                ROWS = 20; COLS = 10;
                 yDifficulty = 1;
                 xDifficulty = 2;
                 break;
 
             case 14 :
-                ROWS = 15; COLS = 8;
+                ROWS = 20; COLS = 10;
                 yDifficulty = 2;
                 xDifficulty = 2;
                 break;
 
             case 15 :
-                ROWS = 15; COLS = 8;
+                ROWS = 20; COLS = 10;
                 yDifficulty = 0;
                 xDifficulty = 0;
                 break;

@@ -7,6 +7,25 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="green">#1CA620</color>
-    <color name="red">#B10528</color>
+    <color name="background_color">#A3152F</color>
+    <color name="label_text_color">#000000</color>
+    <color name="button_color">#312D37</color>
+    <color name="button_text_color">#DAB7BC</color>
+
+    <!--tenc telegramin nman 6/10
+    <color name="background_color">#08084A</color>
+    <color name="label_text_color">#5675D3</color>
+    <color name="button_color">#330873</color>
+    <color name="button_text_color">#9396D3</color>-->
+
+    <!--seriot guyner 7/10
+    <color name="background_color">#6C6868</color>
+    <color name="button_color">#332E2F</color>
+    <color name="button_text_color">#A59E9F</color>-->
+
+    <!--shat vat sev fon 5/1
+    <color name="background_color">#090909</color>
+    <color name="button_color">#951717</color>
+    <color name="button_text_color">#2E070C</color>
+    <color name="label_text_color">#BF1414</color>-->
 </resources>

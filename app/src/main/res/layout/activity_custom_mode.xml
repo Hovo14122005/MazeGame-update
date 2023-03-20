@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/green"
+    android:background="@color/background_color"
     tools:context=".CustomModeActivity">
 
     <TextView
         android:id="@+id/colTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/label_text_color"
         android:text="2 Columns"
         android:textSize="30dp"
         android:layout_above="@id/colProgressBar"
@@ -40,6 +41,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="16dp"
+        android:thumbTint="@color/button_color"
         android:layout_above="@id/rowTextView"
         android:max="25"
         android:min="2"/>
@@ -48,6 +50,7 @@
         android:id="@+id/rowTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/label_text_color"
         android:text="2 Rows"
         android:textSize="30dp"
         android:layout_above="@id/rowProgressBar"
@@ -75,6 +78,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
+        android:thumbTint="@color/button_color"
         android:layout_above="@id/hintTextView"
         android:max="50"
         android:min="2"/>
@@ -83,6 +87,7 @@
         android:id="@+id/hintTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/label_text_color"
         android:text="Skip 1 cells per hint"
         android:textSize="30dp"
         android:layout_above="@id/hintProgressBar"
@@ -107,6 +112,7 @@
         android:id="@+id/hintSeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:thumbTint="@color/button_color"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
@@ -117,7 +123,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submitButton"
-        android:background="@color/red"
+        android:background="@color/button_color"
+        android:textColor="@color/button_text_color"
+        android:textSize="20sp"
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_marginBottom="150dp"

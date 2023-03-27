@@ -1,13 +1,18 @@
 package com.example.mazegame;
 
+import static com.example.mazegame.LevelsActivity.level;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Menu extends Activity {
     public static boolean restartEndlessMode;
@@ -19,6 +24,12 @@ public class Menu extends Activity {
         setContentView(R.layout.menu);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        ConstraintLayout constraintLayout = findViewById(R.id.menu);
+        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
+
         Button playButton = findViewById(R.id.playButton);
         Button endlessModeButton = findViewById(R.id.endlessModeButton);
         Button customModeSettingsButton = findViewById(R.id.customModeSettingsButton);
@@ -29,6 +40,9 @@ public class Menu extends Activity {
             public void onClick(View view) {
                 layoutNum = "anyLevel";
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {

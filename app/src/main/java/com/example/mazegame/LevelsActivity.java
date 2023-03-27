@@ -1,13 +1,17 @@
 package com.example.mazegame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class LevelsActivity extends Activity {
@@ -19,6 +23,12 @@ public class LevelsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        RelativeLayout relativeLayout = findViewById(R.id.levels);
+        AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
 
         TextView level1 = (TextView) findViewById(R.id.level1);
         TextView level2 = (TextView) findViewById(R.id.level2);
@@ -59,6 +69,9 @@ public class LevelsActivity extends Activity {
                 level = 1;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -75,6 +88,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 2;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +109,9 @@ public class LevelsActivity extends Activity {
                 level = 3;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -109,6 +128,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 4;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +149,9 @@ public class LevelsActivity extends Activity {
                 level = 5;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -143,6 +168,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 6;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -161,6 +189,9 @@ public class LevelsActivity extends Activity {
                 level = 7;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -177,6 +208,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 8;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +229,9 @@ public class LevelsActivity extends Activity {
                 level = 9;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -211,6 +248,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 10;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -229,6 +269,9 @@ public class LevelsActivity extends Activity {
                 level = 11;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -245,6 +288,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 12;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -263,6 +309,9 @@ public class LevelsActivity extends Activity {
                 level = 13;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -279,6 +328,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 14;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -297,6 +349,9 @@ public class LevelsActivity extends Activity {
                 level = 15;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -313,6 +368,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 16;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -331,6 +389,9 @@ public class LevelsActivity extends Activity {
                 level = 17;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -347,6 +408,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 18;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -365,6 +429,9 @@ public class LevelsActivity extends Activity {
                 level = 19;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -381,6 +448,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 20;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -399,6 +469,9 @@ public class LevelsActivity extends Activity {
                 level = 21;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -415,6 +488,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 22;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -433,6 +509,9 @@ public class LevelsActivity extends Activity {
                 level = 23;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -449,6 +528,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 24;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -467,6 +549,9 @@ public class LevelsActivity extends Activity {
                 level = 25;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -483,6 +568,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 26;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -501,6 +589,9 @@ public class LevelsActivity extends Activity {
                 level = 27;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -517,6 +608,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 28;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -535,6 +629,9 @@ public class LevelsActivity extends Activity {
                 level = 29;
                 setContentView(R.layout.levels);
 
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
+
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
                     Levels hintView = (Levels) findViewById(R.id.gameView);
@@ -551,6 +648,9 @@ public class LevelsActivity extends Activity {
                 layoutNum = "anyLevel";
                 level = 30;
                 setContentView(R.layout.levels);
+
+                TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+                levelTextView.setText("Level " + level);
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {

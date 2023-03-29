@@ -48,7 +48,7 @@
         android:id="@+id/hintButton"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:text="Help"
+        android:text="Hint"
         android:textSize="20sp"
         android:textColor="@color/button_text_color"
         android:background="@drawable/menu_buttons"

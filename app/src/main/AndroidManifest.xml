@@ -12,17 +12,20 @@
         android:theme="@style/Theme.MazeGame"
         tools:targetApi="31">
         <activity
+            android:name=".PlayLevelActivity"
+            android:exported="false" />
+        <activity
             android:name=".LevelsActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CustomModeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EndlessModeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Menu"
             android:exported="true"

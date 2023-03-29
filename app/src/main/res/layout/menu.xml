@@ -21,19 +21,21 @@
 
     <TextView
         android:id="@+id/labelText"
-        android:layout_width="360dp"
+        android:layout_width="330dp"
         android:layout_height="80dp"
         android:rotationX="29"
         android:text="Maze Game"
         android:textColor="@color/label_text_color"
-        android:textSize="65sp"
+        android:textSize="60sp"
         android:fontFamily="casual"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintVertical_bias="0.23"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/playButton"

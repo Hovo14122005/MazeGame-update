@@ -14,9 +14,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Menu extends Activity {
+public class Menu extends Activity implements Levels.OnTextViewUpdateListener{
     public static boolean restartEndlessMode;
     public String layoutNum = "Menu";
+    Activity thisActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,10 @@ public class Menu extends Activity {
         Button customModeSettingsButton = findViewById(R.id.customModeSettingsButton);
         Button levelsButton = findViewById(R.id.levelsButton);
 
+
+
+
+
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +48,10 @@ public class Menu extends Activity {
 
                 TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
                 levelTextView.setText("Level " + level);
+
+                Levels hintView = (Levels) findViewById(R.id.gameView);
+                hintView.setOnTextViewUpdateListener(Menu.this);
+
 
                 Button hintButton = (Button) findViewById(R.id.hintButton);
                 hintButton.setOnClickListener(new View.OnClickListener() {
@@ -121,4 +130,9 @@ public class Menu extends Activity {
     }
 
 
+    @Override
+    public void onTextViewUpdate(String text) {
+        TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
+        levelTextView.setText(text);
+    }
 }

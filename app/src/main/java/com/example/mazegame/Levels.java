@@ -1,34 +1,23 @@
 package com.example.mazegame;
 
 import static com.example.mazegame.LevelsActivity.level;
-import static com.example.mazegame.Menu.restartEndlessMode;
 
 import static java.lang.Thread.sleep;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
@@ -52,6 +41,7 @@ public class Levels extends View {
     private static float cellSize, hMargin, vMargin, margin;
     private static Paint wallPaint, playerPaint, exitPaint, hintPaint;
     private static Random random;
+    private OnTextViewUpdateListener mListener;
 
 
     public Levels(Context context, @Nullable AttributeSet attrs) {
@@ -137,8 +127,10 @@ public class Levels extends View {
     }
 
     void createMaze(){
-        /*TextView levelTextView = (TextView) findViewById(R.id.levelTextView);
-        levelTextView.setText("Level " + level);*/
+        if(level > 30)level -= 30;
+        if (mListener != null) {
+            mListener.onTextViewUpdate("Level " + level);
+        }
 
         thisLevel = level;
         Stack<Cell> stack = new Stack<>();
@@ -604,6 +596,14 @@ public class Levels extends View {
             return neighbours;
         }
         return null;
+    }
+
+    public interface OnTextViewUpdateListener {
+        void onTextViewUpdate(String text);
+    }
+
+    public void setOnTextViewUpdateListener(OnTextViewUpdateListener listener) {
+        mListener = listener;
     }
 
 }
